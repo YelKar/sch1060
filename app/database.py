@@ -5,7 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from app import app
 
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
+db.init_app(app)
 
 
 class Student(db.Model):
@@ -18,6 +19,8 @@ class Student(db.Model):
     classroom_letter = db.Column(db.Integer())
 
     birthdate = db.Column(db.Integer())
+    passport_series = db.Column(db.Integer())
+    passport_number = db.Column(db.Integer())
 
     def grade(self):
         now = datetime.now()

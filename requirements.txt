@@ -1,6 +1,7 @@
-flask
-flask_sqlalchemy
+flask~=2.2.2
+flask_sqlalchemy~=3.0.0
 flask_admin
 docxtpl
 docx2pdf
 passlib
+loguru~=0.6.0

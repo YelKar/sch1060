@@ -1,0 +1,18 @@
+{% extends base %}
+{% block content %}
+    <p>Hello</p>
+    <label>
+        <input type="text" placeholder='Введите "х"'>
+    </label>
+    <button>Отправить</button>
+    <div>
+    Результат:
+    <span></span>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
+
+    {{ request.remote_addr }} - - [time]
+    {{ request.method }}
+    {{ request.path }}
+    {{ request.environ["SERVER_PROTOCOL"] }}

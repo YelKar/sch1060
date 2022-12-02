@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='code_style.css') }}">
+</head>
+<body>
+    <figure class="listdir">
+        <figcaption>
+            {% for dir in spl_route %}
+                <a href="{{ url_for("listdir", route='/'.join(spl_route[:loop.index])) }}">{{ dir }}</a>/
+            {% endfor %}
+        </figcaption>
+        <ul>
+            {% for file in listdir %}
+                <li><a href="{{ url_for('listdir', route=route + '/' + file) }}">{{ file }}</a></li>
+            {% endfor %}
+        </ul>
+    </figure>
+    {% if file_text %}
+        <div>
+            <pre><code data-language="{{ file_format }}">{{ file_text }}</code></pre>
+        </div>
+    {% endif %}
+<script src="{{ url_for('static', filename='rainbow-custom.min.js') }}"></script>
+{#<button>btn</button>#}
+{#<span class="style_name"></span>#}
+{#<script>#}
+{#    let link = document.querySelector("link")#}
+{#    let style_name = document.querySelector(".style_name")#}
+{#    let themes = [#}
+{#        'all-hallows-eve.css',#}
+{#        'blackboard.css',#}
+{#        'dreamweaver.css',#}
+{#        'espresso-libre.css',#}
+{#        'github.css',#}
+{#        'kimbie-dark.css',#}
+{#        'kimbie-light.css',#}
+{#        'monokai.css',#}
+{#        'obsidian.css',#}
+{#        'paraiso-dark.css',#}
+{#        'paraiso-light.css',#}
+{#        'pastie.css',#}
+{#        'rainbow.css',#}
+{#        'solarized-dark.css',#}
+{#        'solarized-light.css',#}
+{#        'sunburst.css',#}
+{#        'tomorrow-night.css',#}
+{#        'tricolore.css',#}
+{#        'twilight.css',#}
+{#        'zenburnesque.css'#}
+{#    ]#}
+{#    let num = 0#}
+{#    let btn = document.querySelector("button")#}
+{#    btn.addEventListener("click", () => {#}
+{#        link.href = `http://127.0.0.1:2222/static/rainbow-master/rainbow-master/themes/css/${themes[num]}`#}
+{#        style_name.textContent = themes[num]#}
+{#        num++#}
+{#        num %= themes.length#}
+{#    })#}
+{#</script>#}
+</body>
+</html>
