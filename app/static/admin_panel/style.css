@@ -1,0 +1,73 @@
+:root {
+    --bgc: #2a2b30;
+    --btn-color: #39383e;
+    --btn-text-color: #8b8a90;
+    --block-bgc: #242329;
+    --block-brad: 10px;
+
+    --btn-brad: 7px;
+    --icon-size: 30px
+}
+
+html, body {
+    background-color: var(--bgc);
+    font-family: sans-serif;
+}
+
+figcaption.current_route {
+    background-color: var(--block-bgc);
+    padding: 10px var(--icon-size);
+    display: inline-block;
+    border-radius: var(--block-brad);
+    line-height: 30px;
+}
+
+a.route_element {
+    background-color: var(--btn-color);
+
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--btn-text-color);
+
+    border-radius: var(--btn-brad);
+    padding: 4px 7px;
+
+    white-space: nowrap
+}
+span.route_spliter {
+    color: var(--btn-text-color);
+    font-weight: bold;
+}
+
+figure.listdir > ul.list {
+    position: relative;
+    background-color: var(--block-bgc);
+
+    list-style-type: none;
+
+    padding: 10px var(--icon-size);
+    border-radius: var(--block-brad);
+}
+
+ul.list > li > a {
+    display: inline-block;
+
+    background-color: var(--btn-color);
+    color: var(--btn-text-color);
+
+    border-radius: var(--btn-brad);
+
+    text-decoration: none;
+    padding: 2px 10px;
+    margin: 2px;
+}
+
+ul.list > li.directory {
+    font-weight: bold;
+}
+ul.list > li.directory::before {
+    position: absolute;
+    content: "📁";
+    padding-top: 2px;
+    left: 7px;
+}

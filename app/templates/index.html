@@ -1,18 +1,18 @@
 {% extends base %}
+{% from "util.html" import icon, sidebar_elements %}
 {% block content %}
-    <p>Hello</p>
-    <label>
-        <input type="text" placeholder='Введите "х"'>
-    </label>
-    <button>Отправить</button>
-    <div>
-    Результат:
-    <span></span>
-    </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+<div class="actions main-block">
+    {% for element, url, text in sidebar_elements %}
+        <a href="{{ url }}">
+            <div class="action container">
+                <div class="action__icon">
+                    {{ icon(element) }}
+                </div>
+                <div class="action__text">
+                    {{ text }}
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
 {% endblock %}
-
-    {{ request.remote_addr }} - - [time]
-    {{ request.method }}
-    {{ request.path }}
-    {{ request.environ["SERVER_PROTOCOL"] }}

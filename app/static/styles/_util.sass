@@ -1,0 +1,28 @@
+svg
+  width: 100%
+  height: 100%
+  *
+    stroke: $text-color
+    fill: none
+    .fill
+      stroke: none
+      fill: none
+    .stroke
+      fill: $text-color
+      stroke: $text-color
+
+.main-block
+  background-color: $main-block-color
+
+  width: nth($main-block-width, 2)
+  max-width: nth($main-block-width, 3)
+  min-width: nth($main-block-width, 1)
+  height: min-content
+
+  padding: 40px
+  margin: $main-block-margin
+
+  border-radius: $main-block-brad
+  .container
+    background-color: $container-color
+    border-color: $container-border-color

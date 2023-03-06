@@ -3,62 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='code_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_panel/code_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_panel/style.css') }}">
 </head>
+{% macro spliter() %}
+    <span class="route_spliter">/</span>
+{% endmacro %}
+{% macro route_el(dir, url) %}
+    <a class="route_element" href="{{ url_for("listdir", route=url) }}">
+        {{ dir }}
+    </a>
+{% endmacro %}
 <body>
     <figure class="listdir">
-        <figcaption>
-            {% for dir in spl_route %}
-                <a href="{{ url_for("listdir", route='/'.join(spl_route[:loop.index])) }}">{{ dir }}</a>/
+        <figcaption class="current_route">
+            {{ route_el("root") }}
+            {{ spliter() }}
+            {% for dir in spl_route[1:-1] %}
+                {{ route_el(dir, '/'.join(spl_route[:loop.index + 1])) }}
+                {{ spliter() }}
             {% endfor %}
+            {% if spl_route|length > 1 %}
+                <a class="route_element">{{ spl_route[-1] }}</a>
+            {% endif %}
         </figcaption>
-        <ul>
-            {% for file in listdir %}
-                <li><a href="{{ url_for('listdir', route=route + '/' + file) }}">{{ file }}</a></li>
-            {% endfor %}
-        </ul>
+
+        {% if not is_file() %}
+            <ul class="list">
+                {% for file in listdir %}
+                    <li class={{ "file" if is_file(file) else "directory" }}>
+                        <a href="{{ url_for('listdir', route=route + '/' + file) }}">
+                            {{ file }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </figure>
     {% if file_text %}
         <div>
-            <pre><code data-language="{{ file_format }}">{{ file_text }}</code></pre>
+            <pre><code
+                data-language="{{ file_format }}"
+                contenteditable="true"
+            >{{ file_text }}</code></pre>
         </div>
     {% endif %}
-<script src="{{ url_for('static', filename='rainbow-custom.min.js') }}"></script>
-{#<button>btn</button>#}
-{#<span class="style_name"></span>#}
-{#<script>#}
-{#    let link = document.querySelector("link")#}
-{#    let style_name = document.querySelector(".style_name")#}
-{#    let themes = [#}
-{#        'all-hallows-eve.css',#}
-{#        'blackboard.css',#}
-{#        'dreamweaver.css',#}
-{#        'espresso-libre.css',#}
-{#        'github.css',#}
-{#        'kimbie-dark.css',#}
-{#        'kimbie-light.css',#}
-{#        'monokai.css',#}
-{#        'obsidian.css',#}
-{#        'paraiso-dark.css',#}
-{#        'paraiso-light.css',#}
-{#        'pastie.css',#}
-{#        'rainbow.css',#}
-{#        'solarized-dark.css',#}
-{#        'solarized-light.css',#}
-{#        'sunburst.css',#}
-{#        'tomorrow-night.css',#}
-{#        'tricolore.css',#}
-{#        'twilight.css',#}
-{#        'zenburnesque.css'#}
-{#    ]#}
-{#    let num = 0#}
-{#    let btn = document.querySelector("button")#}
-{#    btn.addEventListener("click", () => {#}
-{#        link.href = `http://127.0.0.1:2222/static/rainbow-master/rainbow-master/themes/css/${themes[num]}`#}
-{#        style_name.textContent = themes[num]#}
-{#        num++#}
-{#        num %= themes.length#}
-{#    })#}
-{#</script>#}
+<script src="{{ url_for('static', filename='admin_panel/rainbow-custom.min.js') }}"></script>
 </body>
 </html>

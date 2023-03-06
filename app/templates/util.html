@@ -1,0 +1,32 @@
+{% set sidebar_elements = [
+    ("doc_gen", url_for("select_document"), "Заполнение документов"),
+    ("table_gen", url_for("generate_table"), "Заполнение таблиц"),
+    ("database", url_for("database"), "Просмотр и редактирование базы данных")
+] %}
+
+{% macro icon(name) %}
+    {% include "icons/%s.svg"|format(name) %}
+{% endmacro %}
+
+{% macro sidebar() %}
+    <div class="sidebar">
+        <div class="sidebar__header">
+            <a href="{{ url_for('index') if request.path != url_for("index") else "#" }}" title="Главная страница">
+                <div class="sidebar__element">
+                    <div class="sidebar__icon">{{ icon("home") }}</div>
+                </div>
+            </a>
+        </div>
+        <ul class="sidebar__body container">
+            {% for element, url, text in sidebar_elements %}
+                <li>
+                    <a href="{{ url if request.path != url else "#" }}" title="{{ text }}">
+                        <div class="sidebar__element">
+                            <div class="sidebar__icon">{{ icon(element) }}</div>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}

@@ -1,0 +1,54 @@
+@import "variables"
+
+$docs-line-height: 50px
+
+$space-between-docs: 20px
+$docs-brad: 15px
+$chosen-doc-color: darken($container-color, 5)
+
+.documents
+  text-align: right
+  input[type=submit]
+    @include TextStyle
+
+    margin: $space-between-docs
+    height: $docs-line-height
+    width: 40%
+    min-width: 300px
+
+    outline: none
+    border: 4px solid $container-border-color
+    border-radius: $docs-brad
+    cursor: pointer
+
+    &:active
+      background-color: $chosen-doc-color
+
+
+.document
+  text-align: left
+  margin: $space-between-docs
+
+  border: 4px solid $container-border-color
+  border-radius: $docs-brad
+
+  overflow: hidden
+
+  *
+    cursor: pointer
+
+  label
+    display: block
+    height: 100%
+    width: 100%
+    padding: $docs-line-height / 3 30px
+
+    box-sizing: border-box
+    line-height: $docs-line-height / 2
+    white-space: pre-wrap
+
+  input[type=radio]
+    display: none
+    &:checked
+      + label
+        background-color: $chosen-doc-color

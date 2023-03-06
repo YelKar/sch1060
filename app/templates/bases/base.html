@@ -1,0 +1,20 @@
+{% from "util.html" import sidebar %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>{{ title }}</title>
+        {% block styles %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+        {% endblock %}
+    {% endblock %}
+</head>
+<body>
+    {% block sidebar %}
+        {{ sidebar() }}
+    {% endblock %}
+    {% block content %}{% endblock %}
+</body>
+</html>
