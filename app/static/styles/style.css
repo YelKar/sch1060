@@ -26,8 +26,15 @@ svg * .stroke {
   border-radius: 20px;
 }
 .main-block .container {
-  background-color: #292929;
+  background-color: #313131;
   border-color: #1c1c1c;
+}
+
+input {
+  color: #C5C5C5;
+  font-size: 20px;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
 }
 
 @font-face {
@@ -52,7 +59,7 @@ svg * .stroke {
 .sidebar__header, .sidebar__body {
   width: 100%;
   height: auto;
-  background-color: #292929;
+  background-color: #313131;
   border: 3px solid #1c1c1c;
   box-sizing: border-box;
 }

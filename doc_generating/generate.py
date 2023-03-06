@@ -29,17 +29,14 @@ def generate(
 
     result_dir_path = result_dir_path or dir_path
     doc_path = path.join(dir_path, doc)
+    result_doc_path = path.join(result_dir_path, result_doc_name)
+    ctx = Context(context)
+    print(ctx)
 
     doc = docxtpl.DocxTemplate(f"{doc_path}.docx")
-    doc.render(Context(context))
-
-    result_doc_path = path.join(result_dir_path, result_doc_name)
+    doc.render(ctx)
     doc.save(result_doc_path)
 
 
 if __name__ == '__main__':
-    ctx = {
-        "name": "Елисей",
-        "lastname": "Карамышев"
-    }
-    generate(4)
+    pass

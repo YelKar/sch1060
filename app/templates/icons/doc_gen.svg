@@ -1,30 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="icons__x28_128_x__x_128_x29_"
 	 xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="136px" height="136px"
-	 viewBox="0 0 112 112" style="enable-background:new 0 0 136 136; stroke: gray" xml:space="preserve">
-<g>
+	 viewBox="0 0 112 112" style="enable-background:new 0 0 136 136;" xml:space="preserve">
 	<g>
-		<path stroke-width="4" d="M28,108c-5.5,0-10-4.5-10-10V14c0-5.5,4.5-10,10-10h56c5.5,0,10,4.5,10,10v84c0,5.5-4.5,10-10,10
-			H28z"/>
-		<g stroke-width="3">
+	<g>
+		<path d="M28,108c-5.5,0-10-4.5-10-10V14c0-5.5,4.5-10,10-10h56c5.5,0,10,4.5,10,10v84c0,5.5-4.5,10-10,10
+			H28z" stroke-width="4"/>
+		<g>
 			<g>
-				<rect x="30" y="20" rx="2" width="52" height="72" style="fill: none"/>
+				<rect x="52" y="25" rx="3" class="stroke" width="30" height="6"/>
 			</g>
-			<g class="stroke">
-				<line x1="33" x2="33" y1="20" y2="92" stroke-width="6"/>
-				<line x1="33" x2="82" y1="23" y2="23" stroke-width="6"/>
-				<line x1="30" x2="82" y1="34.6" y2="34.6"/>
-				<line x1="30" x2="82" y1="46" y2="46"/>
-				<line x1="30" x2="82" y1="57.5" y2="57.5"/>
-				<line x1="30" x2="82" y1="69" y2="69"/>
-				<line x1="30" x2="82" y1="81.5" y2="81.5"/>
-				<line x1="30" x2="82" y1="92" y2="92"/>
-
-				<line x1="43" x2="43" y1="20" y2="92"/>
-				<line x1="65" x2="65" y1="20" y2="92"/>
-				<line x1="74" x2="74" y1="20" y2="92"/>
+			<g>
+				<rect x="30" y="39" rx="3" class="stroke" width="52" height="6"/>
+			</g>
+			<g>
+				<rect x="30" y="53" rx="3" class="stroke" width="52" height="6"/>
+			</g>
+			<g>
+				<rect x="30" y="67" rx="3" class="stroke" width="52" height="6"/>
+			</g>
+			<g>
+				<rect x="30" y="81" rx="3" class="stroke" width="52" height="6"/>
 			</g>
 		</g>
+<!--		<g>-->
+<!--			<defs>-->
+<!--				<path id="SVGID_5_" d="M84,104H28c-3.3,0-6-2.7-6-6V14c0-3.3,2.7-6,6-6h56c3.3,0,6,2.7,6,6v84C90,101.3,87.3,104,84,104z"/>-->
+<!--			</defs>-->
+<!--			<clipPath id="SVGID_6_">-->
+<!--				<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>-->
+<!--			</clipPath>-->
+<!--			<rect x="18" y="4" style="opacity:0.8;clip-path:url(#SVGID_6_);fill:#FFFFFF;" width="76" height="8"/>-->
+<!--			<rect x="18" y="100" style="opacity:0.14;clip-path:url(#SVGID_6_);" width="76" height="8"/>-->
+<!--		</g>-->
 	</g>
 </g>
 </svg>

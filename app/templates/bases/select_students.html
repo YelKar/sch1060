@@ -1,0 +1,48 @@
+{% extends doc_base %}
+{% block content %}
+    <div class="main-block select_students">
+        <form method="post" action="{{ url_for('select_students') }}">
+            {% block options %}
+                <div class="option_panel ss_el">
+                    <input onclick="send_students('docx')" class="container option_panel__btn" type="button" value="DOCX">
+                    <input onclick="send_students('pdf')" class="container option_panel__btn" type="button" value="PDF">
+                </div>
+            {% endblock %}
+            {% for admission_year in range(current_year, current_year - 12, -1) %}
+                {% set classroom = loop.index %}
+                {% set classes_query = db.filter_by(admission_year=admission_year) %}
+                {% if classes_query.all() %}
+                    <details class="container student_selector ss_el">
+                        <summary>
+                            <span>{{ classroom }}-е классы</span>
+                            <label>
+                                <input type="checkbox" class="selector_checkbox">
+                            </label>
+                        </summary>
+                        {% for letter in "НОПР" %}
+                            {% set students = classes_query.filter_by(classroom_letter=loop.index0).all() %}
+                            {% if students %}
+                                <details class="container student_selector ss_el">
+                                    <summary>
+                                        <span>{{ classroom }} {{ letter|upper }} класс</span>
+                                        <label>
+                                            <input type="checkbox" class="selector_checkbox">
+                                        </label>
+                                    </summary>
+                                    {% for student in students %}
+                                        <div class="ss_el container student">
+                                            <input class="student_checkbox" id="s{{ student.id }}" value="{{ student.id }}" type="checkbox">
+                                            <label for="s{{ student.id }}">{{ student.fullname }}</label>
+                                        </div>
+                                    {% endfor %}
+                                </details>
+                            {% endif %}
+                        {% endfor %}
+                    </details>
+                {% endif %}
+            {% endfor %}
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/select_students.js') }}">
+    </script>
+{% endblock %}

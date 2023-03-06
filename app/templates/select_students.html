@@ -1,11 +1,5 @@
-{% extends doc_base %}
+{% extends select_students %}
 {% block content %}
-<div class="main-block">
-    <form method="post" action="{{ url_for('select_students') }}">
-        <div class="container option_panel">
-            <input class="option_panel__btn" type="button" value="DOCX">
-            <input class="option_panel__btn" type="button" value="PDF">
-        </div>
-    </form>
-</div>
+    {{ super() }}
+    <input type="hidden" class="gen_url" value="{{ url_for('generate_document') }}">
 {% endblock %}

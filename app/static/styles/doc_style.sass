@@ -4,7 +4,7 @@ $docs-line-height: 50px
 
 $space-between-docs: 20px
 $docs-brad: 15px
-$chosen-doc-color: darken($container-color, 5)
+$chosen-el-color: darken($container-color, 5)
 
 .documents
   text-align: right
@@ -22,7 +22,7 @@ $chosen-doc-color: darken($container-color, 5)
     cursor: pointer
 
     &:active
-      background-color: $chosen-doc-color
+      background-color: $chosen-el-color
 
 
 .document
@@ -51,19 +51,62 @@ $chosen-doc-color: darken($container-color, 5)
     display: none
     &:checked
       + label
-        background-color: $chosen-doc-color
+        background-color: $chosen-el-color
 
 
 .option_panel
   display: grid
-  grid-template-columns: 50% 50%
+  grid-template-columns: repeat(2, 1fr)
+  gap: 5px
 
   border-radius: 10px
-  padding: 10px
+  box-sizing: border-box
 
   &__btn
-    background-color: #555
+    box-sizing: border-box
+
+    width: 100%
+    height: 100%
+
+    background-color: $bgc
+    border: 3px solid $container-border-color
     color: white
     border-radius: 7px
     padding: 10px
+
+.select_students
+  .container
+    box-sizing: border-box
+
+    border: 3px solid $container-border-color
+    border-radius: 7px
+    padding: 10px 15px
+
+  .ss_el
+    margin: 10px 0
+
+  .student
+    padding: 0
+    label
+      display: block
+      padding: 10px 15px
+    input[type=checkbox].student_checkbox
+      display: none
+      &:checked + label
+        background-color: $chosen-el-color
+
+details.ss_el
+  summary
+    display: grid
+    grid-template-columns: auto 40px
+    label
+      input[type=checkbox].selector_checkbox
+        display: none
+      display: block
+      height: 20px
+      width: 20px
+      border: 3px solid $container-border-color
+      border-radius: 7px
+      &:has(input:checked)
+        background-color: $container-border-color
 
