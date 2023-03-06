@@ -1,19 +1,19 @@
 {% extends doc_base %}
 
-{% set documents = [
-    "Документ1",
-    "Lorem ipsum dolor sit amet, "
-    "consectetur adipisicing elit. "
-    "Amet animi culpa iure maxime quam, "
-    "quisquam ratione reprehenderit similique "
-    "suscipit veniam.",
-    "Документ3",
-    "Документ4",
-] %}
+{#{% set documents = [#}
+{#    "Документ1",#}
+{#    "Lorem ipsum dolor sit amet, "#}
+{#    "consectetur adipisicing elit. "#}
+{#    "Amet animi culpa iure maxime quam, "#}
+{#    "quisquam ratione reprehenderit similique "#}
+{#    "suscipit veniam.",#}
+{#    "Документ3",#}
+{#    "Документ4",#}
+{#] %}#}
 
 {% block content %}
 <div class="main-block documents">
-    <form>
+    <form method="post" action="{{ url_for("select_students") }}">
         {% for document in documents %}
             <div class="document container">
                 <input value="{{ document }}" id="{{ loop.index0 }}" type="radio" name="document">

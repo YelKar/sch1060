@@ -4,5 +4,6 @@ CONTEXT_CONSTANTS = dict(
     about_site="School1060",
 )
 
+docs_path = "app/static/documents/"
 
 class_letters = "нопр"
