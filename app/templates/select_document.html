@@ -13,7 +13,7 @@
 
 {% block content %}
 <div class="main-block documents">
-    <form method="post" action="{{ url_for("select_students") }}">
+    <form method="post" action="{{ url_for('select_students') }}">
         {% for document in documents %}
             <div class="document container">
                 <input value="{{ document }}" id="{{ loop.index0 }}" type="radio" name="document">
@@ -23,4 +23,8 @@
         <input class="container" type="submit" value="Далее">
     </form>
 </div>
+<script>
+    let first_doc = document.querySelector("input[name=document]");
+    first_doc.checked = true;
+</script>
 {% endblock %}

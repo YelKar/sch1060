@@ -16,7 +16,8 @@ def select_document():
 
 @app.route('/select_students', methods=['GET', 'POST'])
 def select_students():
-    pass
+    print(request.form)
+    return render_template("select_students.html")
 
 
 @app.route('/generate_table')

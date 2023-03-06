@@ -1,0 +1,11 @@
+{% extends doc_base %}
+{% block content %}
+<div class="main-block">
+    <form method="post" action="{{ url_for('select_students') }}">
+        <div class="container option_panel">
+            <input class="option_panel__btn" type="button" value="DOCX">
+            <input class="option_panel__btn" type="button" value="PDF">
+        </div>
+    </form>
+</div>
+{% endblock %}
