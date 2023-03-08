@@ -1,26 +1,30 @@
-from app.database import db, Student
+from docx.opc.exceptions import PackageNotFoundError
+
 from app import app
-from app.util.constants import class_letters
+from app.database import Student, db
+from docx import Document, document
 
 
 with app.app_context():
-    # for cl in range(5, 12):
-    #     for let in range(4):
-    #         for i in range(1, 11):
-    #             s = Student(
-    #                 name=f"N{cl}.{let}.{i}",
-    #                 lastname=f"Ln{cl}.{let}.{i}",
-    #                 patronymic=f"Patr{cl}.{let}.{i}",
-    #                 admission_year=2023 - cl,
-    #                 classroom_letter=let,
-    #             )
-    #             db.session.add(s)
-    #         db.session.flush()
-    # db.session.commit()
-    print(
-        Student.query
-        .filter(Student.admission_year > 2015)
-        .filter(Student.admission_year <= 2018)
-        .filter_by(classroom_letter=3).delete()
-    )
+    for cr in range(10, 3, -1):
+        for i, let in enumerate("НОП"):
+            try:
+                d: document.Document = Document(f"./Списки_классов/{cr} {let}.docx")
+            except PackageNotFoundError:
+                continue
+            for par in d.paragraphs[2:-1]:
+                fn = par.text.split()
+                if not fn:
+                    continue
+                if fn[0] == "Карамышев":
+                    continue
+                s = Student(
+                    name=fn[1].title(),
+                    lastname=fn[0].title(),
+                    patronymic=fn[2].title() if len(fn) >= 3 else None,
+                    admission_year=2022 - cr,
+                    classroom_letter=i
+                )
+                db.session.add(s)
+                db.session.flush()
     db.session.commit()

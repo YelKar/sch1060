@@ -4,7 +4,6 @@ $docs-line-height: 50px
 
 $space-between-docs: 20px
 $docs-brad: 15px
-$chosen-el-color: darken($container-color, 5)
 
 .documents
   text-align: right
@@ -22,8 +21,7 @@ $chosen-el-color: darken($container-color, 5)
     cursor: pointer
 
     &:active
-      background-color: $chosen-el-color
-
+      background-color: $container-border-color
 
 .document
   text-align: left
@@ -51,12 +49,12 @@ $chosen-el-color: darken($container-color, 5)
     display: none
     &:checked
       + label
-        background-color: $chosen-el-color
+        background-color: $container-border-color
 
 
 .option_panel
   display: grid
-  grid-template-columns: repeat(2, 1fr)
+  grid-template-columns: repeat(1, 1fr) 130px
   gap: 5px
 
   border-radius: 10px
@@ -70,7 +68,6 @@ $chosen-el-color: darken($container-color, 5)
 
     background-color: $bgc
     border: 3px solid $container-border-color
-    color: white
     border-radius: 7px
     padding: 10px
 
@@ -93,7 +90,7 @@ $chosen-el-color: darken($container-color, 5)
     input[type=checkbox].student_checkbox
       display: none
       &:checked + label
-        background-color: $chosen-el-color
+        background-color: $container-border-color
 
 details.ss_el
   summary

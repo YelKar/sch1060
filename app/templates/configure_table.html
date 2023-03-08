@@ -1,0 +1,14 @@
+{% extends select_students %}
+{% block options %}
+    <div class="option_panel ss_el" style="grid-template-columns: repeat(3, 1fr)">
+        <input onclick="generate_table()" class="container option_panel__btn" type="button" value="Заполнить">
+        <input class="container option_panel__btn" type="button" value="Заполнить">
+        <input class="container option_panel__btn" type="button" value="Заполнить">
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='scripts/gen_table.js') }}"></script>
+    <input type="hidden" class="gen_url" value="{{ url_for('generate_table') }}">
+{% endblock %}

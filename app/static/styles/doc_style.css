@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 .documents input[type=submit]:active {
-  background-color: #242424;
+  background-color: #1c1c1c;
 }
 
 .document {
@@ -41,12 +41,12 @@
   display: none;
 }
 .document input[type=radio]:checked + label {
-  background-color: #242424;
+  background-color: #1c1c1c;
 }
 
 .option_panel {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr) 130px;
   gap: 5px;
   border-radius: 10px;
   box-sizing: border-box;
@@ -57,7 +57,6 @@
   height: 100%;
   background-color: #616161;
   border: 3px solid #1c1c1c;
-  color: white;
   border-radius: 7px;
   padding: 10px;
 }
@@ -82,7 +81,7 @@
   display: none;
 }
 .select_students .student input[type=checkbox].student_checkbox:checked + label {
-  background-color: #242424;
+  background-color: #1c1c1c;
 }
 
 details.ss_el summary {

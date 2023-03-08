@@ -4,8 +4,9 @@
         <form method="post" action="{{ url_for('select_students') }}">
             {% block options %}
                 <div class="option_panel ss_el">
-                    <input onclick="send_students('docx')" class="container option_panel__btn" type="button" value="DOCX">
-                    <input onclick="send_students('pdf')" class="container option_panel__btn" type="button" value="PDF">
+                    <input onclick="send_students('docx')" class="container option_panel__btn" type="button" value="Заполнить">
+                    <input class="container option_panel__btn select_all" type="button" value="Выбрать всё">
+{#                    <input onclick="send_students('pdf')" class="container option_panel__btn" type="button" value="PDF">#}
                 </div>
             {% endblock %}
             {% for admission_year in range(current_year, current_year - 12, -1) %}
@@ -29,7 +30,7 @@
                                             <input type="checkbox" class="selector_checkbox">
                                         </label>
                                     </summary>
-                                    {% for student in students %}
+                                    {% for student in students|sort(attribute="lastname,name") %}
                                         <div class="ss_el container student">
                                             <input class="student_checkbox" id="s{{ student.id }}" value="{{ student.id }}" type="checkbox">
                                             <label for="s{{ student.id }}">{{ student.fullname }}</label>
@@ -43,6 +44,6 @@
             {% endfor %}
         </form>
     </div>
-    <script src="{{ url_for('static', filename='scripts/select_students.js') }}">
-    </script>
+    <script src="{{ url_for('static', filename='scripts/select_students.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/checkboxes_details.js') }}"></script>
 {% endblock %}

@@ -26,7 +26,7 @@ svg * .stroke {
   border-radius: 20px;
 }
 .main-block .container {
-  background-color: #313131;
+  background-color: #333333;
   border-color: #1c1c1c;
 }
 
@@ -59,7 +59,7 @@ input {
 .sidebar__header, .sidebar__body {
   width: 100%;
   height: auto;
-  background-color: #313131;
+  background-color: #333333;
   border: 3px solid #1c1c1c;
   box-sizing: border-box;
 }

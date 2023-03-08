@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Iterable
 
 from doc_generating.variables import Variable
@@ -15,6 +16,14 @@ class Context(dict):
                 _obj[k] = cls(v)
             elif isinstance(v, Iterable) and not isinstance(v, str):
                 _obj[k] = Variable(list(cls._from_list(v)))
+            elif isinstance(v, datetime):
+                _obj[k] = Variable(
+                    list(
+                        cls._from_list(
+                            list(v.timetuple())
+                        )
+                    )
+                )
             else:
                 _obj[k] = Variable(v)
         return _obj

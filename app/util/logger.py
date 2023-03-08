@@ -25,8 +25,8 @@ logger.configure(
                  f'</{sending_text_color}>"'
              ))
     ],
-    levels=[dict(name="FILE SENT", no=10, color="<green>")],
+    levels=[dict(name="FILE SENDING", no=10, color="<green>")],
     extra=dict(request=request)
 )
 
-logger.log("FILE SENT", "HELLo")
+logger.log("FILE SENDING", "Hello")

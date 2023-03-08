@@ -37,12 +37,17 @@ class Variable:
         self.value = value
         self.length = 0
         self.empty = " "
+        self.align = "^"
 
-    def __call__(self, length):
+    def __call__(self, length=None, align=None, empty=None):
         """Set value length"""
         assert isinstance(length, int), "length must be only integer"
+        assert isinstance(align, str) or align is None, "align must be only string"
+        assert align is None or align in "<^>", 'arrow must be "<" (left), "^" (center) or ">" (right)'
         res = copy(self)
-        res.length = length
+        res.length = length or self.length
+        res.align = align or self.align
+        res.empty = empty or self.empty
         return res
 
     def __copy__(self):
@@ -50,6 +55,7 @@ class Variable:
         res = self.__class__(self.value)
         res.length = self.length
         res.empty = self.empty
+        res.align = self.align
         return res
 
     def __getattr__(self, item) -> Any:
@@ -59,7 +65,7 @@ class Variable:
     def __getitem__(self, item):
         if hasattr(self.value, "__getitem__"):
             return self.value[item]
-        raise TypeError("'Variable' object is not subscriptable")
+        return self.__class__(None)
 
     def __setitem__(self, key, value):
         if hasattr(self.value, "__setitem__"):
@@ -74,7 +80,8 @@ class Variable:
         return res
 
     def __str__(self):
-        return f"{str(self.value):^{self.length}}".replace(" ", self.empty)
+        string = '' if self.value is None else str(self.value)
+        return f"{string:{self.align}{self.length}}".replace(" ", self.empty)
 
     def __repr__(self):
         return repr(self.value)
@@ -84,6 +91,6 @@ class Variable:
 
 
 if __name__ == '__main__':
-    v = Variable("Hello, world")
-    print(v(40) <= "8")
-    print(Variable("Hello, world!")(21) <= "_")
+    v = Variable(2005)
+    print(v(9))
+    print(Variable("Hello, world!")(21, ">") <= "_")

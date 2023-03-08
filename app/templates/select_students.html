@@ -2,4 +2,5 @@
 {% block content %}
     {{ super() }}
     <input type="hidden" class="gen_url" value="{{ url_for('generate_document') }}">
+    <input type="hidden" class="document_for_gen" value="{{ document }}">
 {% endblock %}

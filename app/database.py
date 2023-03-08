@@ -20,14 +20,22 @@ class Student(db.Model):
 
     birthdate_timestamp = db.Column(db.Integer())
 
-    info = db.relationship("Info", backref="student")
+    info = db.relationship("Info", backref="student", lazy=False)
 
     year_start_month = 9
 
     @property
     def birthdate(self):
+        if self.birthdate_timestamp is None:
+            return None
         date = datetime.fromtimestamp(self.birthdate_timestamp)
-        return date.strftime("%d.%m.%Y")
+        return date
+
+    @property
+    def birthdate_str(self):
+        if self.birthdate is None:
+            return ""
+        return self.birthdate.strftime("%d.%m.%Y")
 
     @property
     def grade(self):
@@ -40,7 +48,13 @@ class Student(db.Model):
         return current_grade
 
     @property
+    def letter(self):
+        return class_letters[self.classroom_letter].upper()
+
+    @property
     def age(self):
+        if self.birthdate_timestamp is None:
+            return None
         birthdate = datetime.fromtimestamp(self.birthdate_timestamp).date()
         date = datetime.now().date()
         return date.year - birthdate.year - \
@@ -49,15 +63,14 @@ class Student(db.Model):
 
     @property
     def fullname(self):
-        return " ".join((self.lastname, self.name, self.patronymic))
+        return " ".join(filter(None, (self.lastname, self.name, self.patronymic)))
 
-    #
-    # @classmethod
-    # def to_dict(cls):
-    #     pass
+    def to_dict(self):
+        attrs = filter(lambda attr: not attr.startswith("_"), self.__dir__())
+        return {attr: self.__getattribute__(attr) for attr in attrs}
 
     def __repr__(self):
-        return f"<Student {self.id} {self.grade}{class_letters[self.classroom_letter]}>"
+        return f"<Student {self.id} {self.grade}{self.letter}>"
 
 
 class Info(db.Model):

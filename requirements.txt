@@ -1,7 +1,8 @@
 flask~=2.2.2
 flask_sqlalchemy~=3.0.0
 flask_admin
-docxtpl
-docx2pdf
+docxtpl~=0.16.5
+docx2pdf~=0.1.8
 passlib
 loguru~=0.6.0
+openpyxl~=3.1.1

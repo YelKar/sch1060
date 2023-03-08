@@ -1,1 +1,1 @@
-from doc_generating.generate import generate
+from doc_generating.documents import generate
