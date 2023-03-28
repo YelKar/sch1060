@@ -1,0 +1,16 @@
+{% extends base %}
+{% macro field(name, default) %}
+    <label>
+        {{ name }}
+        <input type="text" value="{{ default }}">
+    </label>
+{% endmacro %}
+{% block content %}
+    {% set student = db(id=student_id).first() %}
+    <form>
+        {% for col, val in student.to_dict()|items %}
+            {{ field(col, val) }}
+        {% endfor %}
+
+    </form>
+{% endblock %}

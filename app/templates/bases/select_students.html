@@ -1,17 +1,19 @@
 {% extends doc_base %}
 {% block content %}
+    {% set today = now().date() %}
+    {% set current_year = today.year - (today.month < year_start_month) %}
     <div class="main-block select_students">
         <form method="post" action="{{ url_for('select_students') }}">
             {% block options %}
                 <div class="option_panel ss_el">
-                    <input onclick="send_students('docx')" class="container option_panel__btn" type="button" value="Заполнить">
+                    <input onclick="send_students('docx')" class="container option_panel__btn" type="button" value="DOCX">
+                    <input onclick="send_students('pdf')" class="container option_panel__btn" type="button" value="PDF">
                     <input class="container option_panel__btn select_all" type="button" value="Выбрать всё">
-{#                    <input onclick="send_students('pdf')" class="container option_panel__btn" type="button" value="PDF">#}
                 </div>
             {% endblock %}
             {% for admission_year in range(current_year, current_year - 12, -1) %}
                 {% set classroom = loop.index %}
-                {% set classes_query = db.filter_by(admission_year=admission_year) %}
+                {% set classes_query = db(admission_year=admission_year) %}
                 {% if classes_query.all() %}
                     <details class="container student_selector ss_el">
                         <summary>
@@ -33,7 +35,7 @@
                                     {% for student in students|sort(attribute="lastname,name") %}
                                         <div class="ss_el container student">
                                             <input class="student_checkbox" id="s{{ student.id }}" value="{{ student.id }}" type="checkbox">
-                                            <label for="s{{ student.id }}">{{ student.fullname }}</label>
+                                            <label for="s{{ student.id }}" class="student_checkbox_label">{{ student.fullname }}</label>
                                         </div>
                                     {% endfor %}
                                 </details>
@@ -44,6 +46,6 @@
             {% endfor %}
         </form>
     </div>
-    <script src="{{ url_for('static', filename='scripts/select_students.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/checkboxes_details.js') }}"></script>
+    <script src="{{ url_for('scripts', filename='select_students.js') }}"></script>
+    <script src="{{ url_for('scripts', filename='checkboxes_details.js') }}"></script>
 {% endblock %}

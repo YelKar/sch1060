@@ -1,3 +1,4 @@
+import json
 import os
 
 from flask import render_template, request
@@ -29,3 +30,20 @@ def listdir():
         file_format="" if not file_resolution else formats.get(file_resolution),
         is_file=lambda name="": os.path.isfile(os.path.join(route, name))
     )
+
+
+@app.route('/save_file', methods=['POST'])
+def save_file():
+    file = json.loads(request.data)
+    filename = "./" + "/".join(
+        (
+            *map(
+                lambda x: x.strip(),
+                file["file"].split("/")
+            ),
+        )[1:]
+    )
+    content = file["content"]
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(content)
+    return "OK"

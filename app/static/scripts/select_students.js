@@ -1,6 +1,5 @@
 async function send_students(type) {
-    let students = document.querySelectorAll("input:checked.student_checkbox");
-    let ids = Array.from(students).map(val => val.id.slice(1) - 0);
+    let ids = get_selected();
     if (!ids.length) {
         return;
     }
@@ -24,11 +23,7 @@ async function send_students(type) {
 }
 
 
-function goto(url, download=false) {
-    let linkElement = document.createElement("a")
-    if (download) {
-        linkElement.download = download;
-    }
-    linkElement.href = url;
-    linkElement.click()
+function get_selected() {
+    let students = document.querySelectorAll("input:checked.student_checkbox");
+    return Array.from(students).map(val => val.id.slice(1) - 0);
 }

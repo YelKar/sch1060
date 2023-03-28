@@ -7,21 +7,50 @@ $docs-brad: 15px
 
 .documents
   text-align: right
-  input[type=submit]
-    @include TextStyle
-
+  .action_btns
+    box-sizing: border-box
+    display: grid
+    grid-template-columns: 65% auto
+    grid-gap: 15px
     margin: $space-between-docs
+      top: $space-between-docs * 2
+  .btn
+    @include TextStyle
+    box-sizing: border-box
+    display: block
+    margin: 0
     height: $docs-line-height
-    width: 40%
-    min-width: 300px
+    line-height: $docs-line-height / 4 * 3
+    text-decoration: none
 
     outline: none
     border: 4px solid $container-border-color
     border-radius: $docs-brad
     cursor: pointer
+    padding: 2px 6px
+    text-align: center
 
     &:active
       background-color: $container-border-color
+  details.btn
+    summary
+      text-align: center !important
+      text-indent: 0 !important
+      &::-webkit-details-marker, &::marker
+        display: none
+        content: ""
+    &[open]
+      text-indent: 30px
+      height: auto
+      text-align: justify
+
+input[type=file]
+  display: none
+  &::selection + label
+    background-color: #f00
+  + label
+    display: block
+    cursor: pointer
 
 .document
   text-align: left
@@ -35,7 +64,7 @@ $docs-brad: 15px
   *
     cursor: pointer
 
-  label
+  label, input
     display: block
     height: 100%
     width: 100%
@@ -54,7 +83,7 @@ $docs-brad: 15px
 
 .option_panel
   display: grid
-  grid-template-columns: repeat(1, 1fr) 130px
+  grid-template-columns: repeat(2, 1fr) 130px
   gap: 5px
 
   border-radius: 10px
@@ -107,3 +136,5 @@ details.ss_el
       &:has(input:checked)
         background-color: $container-border-color
 
+input
+  outline: none

@@ -1,21 +1,57 @@
 .documents {
   text-align: right;
 }
-.documents input[type=submit] {
+.documents .action_btns {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 65% auto;
+  grid-gap: 15px;
+  margin: 20px;
+  margin-top: 40px;
+}
+.documents .btn {
   color: #C5C5C5;
   font-size: 20px;
   font-family: "Nunito", sans-serif;
-  margin: 20px;
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
   height: 50px;
-  width: 40%;
-  min-width: 300px;
+  line-height: 37.5px;
+  text-decoration: none;
   outline: none;
   border: 4px solid #1c1c1c;
   border-radius: 15px;
   cursor: pointer;
+  padding: 2px 6px;
+  text-align: center;
 }
-.documents input[type=submit]:active {
+.documents .btn:active {
   background-color: #1c1c1c;
+}
+.documents details.btn summary {
+  text-align: center !important;
+  text-indent: 0 !important;
+}
+.documents details.btn summary::-webkit-details-marker, .documents details.btn summary::marker {
+  display: none;
+  content: "";
+}
+.documents details.btn[open] {
+  text-indent: 30px;
+  height: auto;
+  text-align: justify;
+}
+
+input[type=file] {
+  display: none;
+}
+input[type=file]::selection + label {
+  background-color: #f00;
+}
+input[type=file] + label {
+  display: block;
+  cursor: pointer;
 }
 
 .document {
@@ -28,7 +64,7 @@
 .document * {
   cursor: pointer;
 }
-.document label {
+.document label, .document input {
   display: block;
   height: 100%;
   width: 100%;
@@ -46,7 +82,7 @@
 
 .option_panel {
   display: grid;
-  grid-template-columns: repeat(1, 1fr) 130px;
+  grid-template-columns: repeat(2, 1fr) 130px;
   gap: 5px;
   border-radius: 10px;
   box-sizing: border-box;
@@ -100,6 +136,10 @@ details.ss_el summary label input[type=checkbox].selector_checkbox {
 }
 details.ss_el summary label:has(input:checked) {
   background-color: #1c1c1c;
+}
+
+input {
+  outline: none;
 }
 
 /*# sourceMappingURL=doc_style.css.map */

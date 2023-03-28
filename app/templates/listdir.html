@@ -45,9 +45,49 @@
             <pre><code
                 data-language="{{ file_format }}"
                 contenteditable="true"
+                class="code"
             >{{ file_text }}</code></pre>
         </div>
+        <button class="save_file" onclick="edited && confirm('Сохранить?') && save()">
+            Сохранить
+        </button>
     {% endif %}
 <script src="{{ url_for('static', filename='admin_panel/rainbow-custom.min.js') }}"></script>
+<script>
+    let code_block = document.getElementsByClassName("code");
+    let code_text = "";
+    let edited = false;
+
+    function save() {
+        let current_route = document.querySelector("figcaption.current_route")
+        fetch(
+            "/save_file",
+            {
+                method: "POST",
+                body: JSON.stringify(
+                    {
+                        file: current_route.textContent,
+                        content: code_block[0].textContent
+                    }
+                )
+            }
+        )
+        edited = false;
+    }
+
+    window.addEventListener(
+        "input",
+        e => {
+            if (e.target == code_block[0]) {
+                edited = true;
+            }
+        }
+    )
+    window.onbeforeunload = (e) => {
+        if (edited) {
+            return ""
+        }
+    }
+</script>
 </body>
 </html>

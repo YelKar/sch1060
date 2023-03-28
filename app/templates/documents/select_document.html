@@ -14,13 +14,16 @@
 {% block content %}
 <div class="main-block documents">
     <form method="post" action="{{ url_for('select_students') }}">
-        {% for document in documents %}
+        {% for document in get_documents() %}
             <div class="document container">
                 <input value="{{ document }}" id="{{ loop.index0 }}" type="radio" name="document">
                 <label for="{{ loop.index0 }}">{{ document }}</label>
             </div>
         {% endfor %}
-        <input class="container" type="submit" value="Далее">
+        <div class="action_btns">
+            <a class="container btn" href="{{ url_for('edit_documents') }}">Добавить документ</a>
+            <input class="container btn" type="submit" value="Далее">
+        </div>
     </form>
 </div>
 <script>

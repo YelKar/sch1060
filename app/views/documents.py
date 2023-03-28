@@ -2,7 +2,6 @@ import json
 import os.path
 from datetime import date, datetime
 
-from docx2pdf import convert
 from flask import render_template, request, url_for, send_file
 
 from app import app
@@ -11,17 +10,14 @@ from app.util.logger import logger
 from app.util.constants import docs_path, result_docs_path
 from app.util.tools import get_documents
 
-from doc_generating import generate
-
-
-docs = tuple(".".join(doc.split(".")[:-1]) for doc in get_documents())
+from doc_generating import generate, convert
 
 
 @app.route('/select_document')
 def select_document():
     if request.form:
         print(request.form)
-    return render_template("select_document.html", documents=docs)
+    return render_template("documents/select_document.html")
 
 
 @app.route('/select_students', methods=['GET', 'POST'])
@@ -30,8 +26,6 @@ def select_students():
     today = date.today()
     return render_template(
         "select_students.html",
-        db=Student.query,
-        current_year=today.year - (today.month < Student.year_start_month),
         document=document
     )
 
@@ -47,15 +41,16 @@ def generate_document():
 
     students = Student.query.filter(Student.id.in_(ids)).all()
     doc_name = datetime.now().strftime(f'{document}''__%d_%m_%Y__%H-%M-%S.%f.{type}')
-    generate(
+    doc_path = generate(
         document, docs_path,
         doc_name.format(type="docx"), result_docs_path,
         students=list(map(Student.to_dict, students))
     )
     if doc_type == "docx":
         return url_for("download_file", file=doc_name.format(type="docx"))
-    # if doc_type == "pdf":
-    #     convert(doc_path, os.path.join(result_docs_path, doc_name.format(type="pdf")))
+    if doc_type == "pdf":
+        convert(doc_path)
+        return url_for("download_file", file=doc_name.format(type="pdf"))
 
 
 @app.route('/download_file/<string:file>')

@@ -7,8 +7,10 @@
         <meta charset="UTF-8">
         <title>{{ title }}</title>
         {% block styles %}
-            <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+            <link rel="stylesheet" href="{{ url_for('styles', filename='style.css') }}">
         {% endblock %}
+        <script src="{{ url_for('scripts', filename='util.js') }}"></script>
+        <input type="hidden" value="{{ url_for('get_url_for') }}" id="url_for">
     {% endblock %}
 </head>
 <body>

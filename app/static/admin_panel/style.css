@@ -22,18 +22,26 @@ figcaption.current_route {
     line-height: 30px;
 }
 
-a.route_element {
+a.route_element, button.save_file {
     background-color: var(--btn-color);
 
     text-decoration: none;
     font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: var(--btn-text-color);
+    font-size: 16px;
 
     border-radius: var(--btn-brad);
     padding: 4px 7px;
 
-    white-space: nowrap
+    white-space: nowrap;
+    cursor: pointer !important;
 }
+
+a.route_element:hover, button.save_file:hover {
+    filter: brightness(120%);
+}
+
 span.route_spliter {
     color: var(--btn-text-color);
     font-weight: bold;
@@ -70,4 +78,8 @@ ul.list > li.directory::before {
     content: "📁";
     padding-top: 2px;
     left: 7px;
+}
+
+button.save_file {
+    padding: 7px 15px;
 }

@@ -1,9 +1,11 @@
 from datetime import datetime
+from typing import Optional
 
 from flask_sqlalchemy import SQLAlchemy
 
 from app import app
-from app.util.constants import class_letters
+from app.util.constants import class_letters, CONTEXT_CONSTANTS
+
 
 db = SQLAlchemy()
 db.init_app(app)
@@ -22,10 +24,16 @@ class Student(db.Model):
 
     info = db.relationship("Info", backref="student", lazy=False)
 
-    year_start_month = 9
+    year_start_month = CONTEXT_CONSTANTS["year_start_month"]
+
+    editable_fields = (
+        "lastname", "name", "patronymic",
+        "admission_year", "classroom_letter", "letter",
+        "birthdate_timestamp", "birthdate_str", "birthdate"
+    )
 
     @property
-    def birthdate(self):
+    def birthdate(self) -> Optional[datetime]:
         if self.birthdate_timestamp is None:
             return None
         date = datetime.fromtimestamp(self.birthdate_timestamp)
@@ -36,6 +44,10 @@ class Student(db.Model):
         if self.birthdate is None:
             return ""
         return self.birthdate.strftime("%d.%m.%Y")
+
+    @birthdate_str.setter
+    def birthdate_str(self, value):
+        pass
 
     @property
     def grade(self):

@@ -1,0 +1,44 @@
+{% extends select_students %}
+{% block content %}
+    {{ super() }}
+    <script src="{{ url_for('scripts', filename='edit_database.js') }}"></script>
+    <script src="{{ url_for('scripts', filename='ctxMenu.js') }}"></script>
+    <script src="{{ url_for('scripts', filename='load_file.js') }}"></script>
+    <input type="hidden" value="{{ url_for('delete_students') }}" class="delete_link">
+    <script>
+        let file_input = document.getElementById("file")
+        let format = document.querySelector("input.load_class_format")
+        file_input.addEventListener(
+            "change",
+            (e) => {
+                load_file(
+                    "{{ url_for('load_classroom') }}",
+                    "file",
+                    {format: format.value.trim()}
+                )(e)
+            }
+        )
+    </script>
+{% endblock %}
+
+{% block options %}
+    <div class="option_panel ss_el" style="grid-template-columns: auto 150px">
+        <input onclick="delete_students()" class="container option_panel__btn" type="button" value="Удалить выбранные">
+        <input class="container option_panel__btn select_all" type="button" value="Выбрать всё">
+    </div>
+    <div class="option_panel ss_el" style="grid-template-columns: auto 290px; text-align: center">
+        <label>
+            <input type="text"
+                   class="load_class_format container btn"
+                   style="width: 100%; height: 100%"
+                   placeholder="Пример: //фамилия// //имя// //отчество//"
+            >
+        </label>
+        <label for="file" class="container btn">Загрузить список класса</label>
+        <input type="file" id="file" accept=".docx,.doc">
+    </div>
+     <details class="container btn">
+        <summary>Инструкция</summary>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur eum ex rem reprehenderit repudiandae saepe sunt. Magnam minus molestiae officia placeat quae quam quo ratione rem, sequi voluptates? At eaque eligendi eveniet id illum odit reprehenderit sint veniam. Excepturi fuga iste nisi odio perspiciatis quam veritatis voluptatum? Ad alias aspernatur culpa, dicta dolorem, dolores eius error eum excepturi fugiat impedit iure magni nam nisi non officiis, placeat quam quas qui quisquam quo rem rerum saepe similique soluta tempora velit? Enim nostrum, quaerat. Accusamus accusantium atque, commodi doloribus eligendi eveniet ex ipsa laborum nam quas ullam vero. Ab aliquam aspernatur autem culpa delectus dolorem ea esse, et explicabo, ipsum minima, nam non numquam odio officia perferendis quaerat quo reprehenderit rerum velit voluptate!</p>
+    </details>
+{% endblock %}
