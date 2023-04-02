@@ -1,10 +1,7 @@
-from docx import Document
 from flask import request, render_template, redirect, url_for
-from werkzeug.datastructures import FileStorage
 
 from app import app
 from app.database import Student, db
-from app.util.constants import class_letters
 from doc_generating.get_data import from_doc
 
 
@@ -24,7 +21,7 @@ def delete_students():
 @app.route('/add_student', methods=["POST"])
 def add_student():
     print(request.data)
-    user_id = ...
+    # user_id = ...
 
 
 @app.route("/edit_student/<int:student_id>")
@@ -50,9 +47,7 @@ def load_classroom():
 def load_classroom_to_db():
     students = {}
     admission_year = int(request.form["admission_year"])
-    classroom_letter = class_letters.find(request.form["classroom_letter"].lower())
-
-    assert classroom_letter != -1, "not specified classroom_letter"
+    classroom_letter = ord(request.form["classroom_letter"].upper())
 
     for key, val in request.form.items():
         if ":" in key:

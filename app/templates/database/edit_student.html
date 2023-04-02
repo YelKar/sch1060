@@ -1,16 +1,25 @@
-{% extends base %}
-{% macro field(name, default) %}
-    <label>
-        {{ name }}
-        <input type="text" value="{{ default }}">
-    </label>
+{% extends doc_base %}
+{% set student = db(id=student_id).first() %}
+{% set fields = student.editable_fields %}
+{% macro field(name, default=none, label=none, type="text") %}
+    <div class="edit_field">
+        <label for="{{ name }}">{{ label if label is not none else fields.get(name)|title }}</label><br>
+        <input type="{{ type }}" id="{{ name }}" value="{{ default if default is not none else student[name] }}">
+    </div>
 {% endmacro %}
 {% block content %}
-    {% set student = db(id=student_id).first() %}
-    <form>
-        {% for col, val in student.to_dict()|items %}
-            {{ field(col, val) }}
-        {% endfor %}
-
-    </form>
+    <div class="main-block">
+        <form class="edit_student">
+            <div class="edit_student_block">
+                {{ field("lastname") }}
+                {{ field("name") }}
+                {{ field("patronymic") }}
+            </div>
+            <div class="edit_student_block">
+                {{ field("birthdate_str") }}
+                {{ field("grade") }}
+                {{ field("letter") }}
+            </div>
+        </form>
+    </div>
 {% endblock %}

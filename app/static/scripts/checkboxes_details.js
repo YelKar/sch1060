@@ -36,3 +36,14 @@ function change_all() {
         el.checked = !flag;
     }
 }
+
+
+setInterval(
+    () => {
+        let counter = document.querySelector(".count_selected > .counter");
+        if (counter) {
+            counter.textContent = get_selected().length;
+        }
+    },
+    50
+)

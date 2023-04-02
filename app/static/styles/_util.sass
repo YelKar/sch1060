@@ -28,8 +28,9 @@ svg
 
 input
   @include TextStyle
+  outline: none
   font-size: 15px
-  background-color: $main-block-color
+  background-color: $container-color
   border:
     color: $container-border-color
     style: solid
@@ -38,7 +39,7 @@ input
   margin: 2px
   padding: 5px
   &:hover
-    background-color: darken($main-block-color, 2)
+    background-color: darken($container-color, 2)
   &:active
     background-color: darken($main-block-color, 4)
   &[type="button"], &[type="submit"]

@@ -38,3 +38,7 @@ def db(*bool_filters, **filters):
     elif filters:
         return query.filter_by(**filters)
     return query
+
+
+app.add_template_filter(ord)
+app.add_template_filter(chr)

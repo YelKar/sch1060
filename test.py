@@ -8,9 +8,8 @@ from docx import Document, document
 
 
 with app.app_context():
-    st = Student()
-    st.__setattr__("name", "qwer")
-    st.lastname = "KJHKHKHKJHKJH"
-    st.patronymic = "JKHHJHK"
-    db.session.add(st)
+    for st in Student.query.all():
+        st: Student
+        if st.classroom_letter < 500:
+            st.classroom_letter = ord("НОПР"[st.classroom_letter])
     db.session.commit()

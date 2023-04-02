@@ -138,11 +138,6 @@ details.ss_el summary label:has(input:checked) {
   background-color: #1c1c1c;
 }
 
-input {
-  outline: none;
-  margin: 0;
-}
-
 form.load_classroom {
   position: relative;
 }

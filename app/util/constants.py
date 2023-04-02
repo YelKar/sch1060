@@ -13,5 +13,3 @@ CONTEXT_CONSTANTS = dict(
 
 docs_path = "app/static/documents/templates"
 result_docs_path = "app/static/documents/generated"
-
-class_letters = "нопр"

@@ -10,6 +10,7 @@
                     <input onclick="send_students('pdf')" class="container option_panel__btn" type="button" value="PDF">
                     <input class="container option_panel__btn select_all" type="button" value="Выбрать всё">
                 </div>
+                <div class="container count_selected ss_el">Выбрано всего: <span class="counter">0</span></div>
             {% endblock %}
             {% for admission_year in range(current_year, current_year - 12, -1) %}
                 {% set classroom = loop.index %}
@@ -22,12 +23,12 @@
                                 <input type="checkbox" class="selector_checkbox">
                             </label>
                         </summary>
-                        {% for letter in "НОПР" %}
-                            {% set students = classes_query.filter_by(classroom_letter=loop.index0).all() %}
+                        {% for letter in range("А"|ord, "Я"|ord + 1) %}
+                            {% set students = classes_query.filter_by(classroom_letter=letter).all() %}
                             {% if students %}
                                 <details class="container student_selector ss_el">
                                     <summary>
-                                        <span>{{ classroom }} {{ letter|upper }} класс</span>
+                                        <span>{{ classroom }} {{ letter|chr|upper }} класс</span>
                                         <label>
                                             <input type="checkbox" class="selector_checkbox">
                                         </label>

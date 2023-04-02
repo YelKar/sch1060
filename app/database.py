@@ -4,7 +4,7 @@ from typing import Optional
 from flask_sqlalchemy import SQLAlchemy
 
 from app import app
-from app.util.constants import class_letters, CONTEXT_CONSTANTS
+from app.util.constants import CONTEXT_CONSTANTS
 
 
 db = SQLAlchemy()
@@ -26,11 +26,14 @@ class Student(db.Model):
 
     year_start_month = CONTEXT_CONSTANTS["year_start_month"]
 
-    editable_fields = (
-        "lastname", "name", "patronymic",
-        "admission_year", "classroom_letter", "letter",
-        "birthdate_timestamp", "birthdate_str", "birthdate"
-    )
+    editable_fields = {
+        "lastname": "фамилия",
+        "name": "имя",
+        "patronymic": "отчество",
+        "grade": "класс",
+        "letter": "буква",
+        "birthdate_str": "дата рождения"
+    }
 
     birthdate_format = "%d.%m.%Y"
 
@@ -71,7 +74,7 @@ class Student(db.Model):
 
     @property
     def letter(self):
-        return class_letters[self.classroom_letter].upper()
+        return chr(self.classroom_letter).upper()
 
     @property
     def age(self):

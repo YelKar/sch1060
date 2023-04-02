@@ -4,8 +4,8 @@
     <div class="main-block" style="width: unset; max-width: unset;">
         <form action="{{ url_for('load_classroom_to_db') }}" class="load_classroom" method="post">
             <label class="classroom">
-                <input type="text" name="admission_year" placeholder="Год поступления в школу" required>
-                <input type="text" name="classroom_letter" placeholder="Буква" required>
+                <input type="number" name="admission_year" placeholder="Год поступления в школу" required>
+                <input type="text" maxlength="1" name="classroom_letter" placeholder="Буква" required>
             </label>
             <div class="classroom_confirm">
                 {% for student in students %}
