@@ -35,6 +35,22 @@ input {
   font-size: 20px;
   font-family: "Nunito", sans-serif;
   font-size: 15px;
+  background-color: #3d3d3d;
+  border-color: #1c1c1c;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 10px;
+  margin: 2px;
+  padding: 5px;
+}
+input:hover {
+  background-color: #383838;
+}
+input:active {
+  background-color: #333333;
+}
+input[type=button], input[type=submit] {
+  cursor: pointer;
 }
 
 @font-face {

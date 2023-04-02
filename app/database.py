@@ -32,6 +32,12 @@ class Student(db.Model):
         "birthdate_timestamp", "birthdate_str", "birthdate"
     )
 
+    birthdate_format = "%d.%m.%Y"
+
+    @classmethod
+    def grade_to_admission_year(cls, grade):
+        pass
+
     @property
     def birthdate(self) -> Optional[datetime]:
         if self.birthdate_timestamp is None:
@@ -39,15 +45,19 @@ class Student(db.Model):
         date = datetime.fromtimestamp(self.birthdate_timestamp)
         return date
 
+    @birthdate.setter
+    def birthdate(self, birthdate: datetime):
+        self.birthdate_timestamp = birthdate.timestamp()
+
     @property
     def birthdate_str(self):
         if self.birthdate is None:
             return ""
-        return self.birthdate.strftime("%d.%m.%Y")
+        return self.birthdate.strftime(self.birthdate_format)
 
     @birthdate_str.setter
-    def birthdate_str(self, value):
-        pass
+    def birthdate_str(self, date_string: str):
+        self.birthdate = datetime.strptime(date_string, self.birthdate_format)
 
     @property
     def grade(self):

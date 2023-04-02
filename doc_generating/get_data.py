@@ -25,9 +25,10 @@ class Var:
 
 
 format_vars = {
-    "имя": Var("name", "w+"),
-    "фамилия": Var("lastname", "w+"),
-    "отчество": Var("patronymic", "w+")
+    "имя": Var("name", r"\w+"),
+    "фамилия": Var("lastname", r"\w+"),
+    "отчество": Var("patronymic", r"\w+"),
+    "др": Var("birthdate_str", r"\d{2}\.\d{2}\.\d{4}")
 }
 
 
@@ -61,16 +62,16 @@ def compile_format(format_: str) -> Pattern:
             format_
         ).replace(
             "//"+v+"//",
-            f"(?P<{v}>\\{v.dtype})"
+            f"(?P<{v}>{v.dtype})"
         )
-    return re.compile(format_.replace(" ", " +"))
+    return re.compile(format_.replace(" ", " +"), flags=re.IGNORECASE)
 
 
 if __name__ == '__main__':
     print(
         *from_doc(
-            "../Списки_классов/10 Н.docx",
-            r"//фамилия// //имя// //отчество//\s*(?P<opt>.*)"
+            "../file.docx",
+            r"//фамилия// //имя// //отчество// //др//"
         ),
         sep="\n"
     )

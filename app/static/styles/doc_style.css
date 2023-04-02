@@ -140,6 +140,71 @@ details.ss_el summary label:has(input:checked) {
 
 input {
   outline: none;
+  margin: 0;
+}
+
+form.load_classroom {
+  position: relative;
+}
+form.load_classroom .classroom_confirm {
+  position: relative;
+  overflow: hidden;
+  background-color: #333333;
+  text-align: left !important;
+  overflow-x: scroll;
+  white-space: nowrap;
+  padding-left: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 10px;
+  border-color: #1c1c1c;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 15px;
+}
+form.load_classroom .classroom_confirm::-webkit-scrollbar {
+  overflow: hidden;
+  height: 15px;
+  border-radius: 5px;
+}
+form.load_classroom .classroom_confirm::-webkit-scrollbar-track {
+  background-color: #3d3d3d;
+  border-top-style: solid;
+  border-top-color: #1c1c1c;
+  border-top-width: 3px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+form.load_classroom .classroom_confirm::-webkit-scrollbar-thumb {
+  background-color: #333333;
+  border-radius: 8px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top: 3px solid #1c1c1c;
+}
+form.load_classroom .classroom_confirm .cancel_student {
+  text-align: center;
+  font-weight: bold;
+  width: 40px;
+}
+form.load_classroom .classroom_confirm .student_confirm {
+  margin: 3px;
+}
+form.load_classroom input[type=submit] {
+  margin-top: 20px;
+  width: 100%;
+  background-color: #333333;
+}
+form.load_classroom .classroom {
+  width: 100%;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: auto 100px;
+}
+form.load_classroom .classroom > input {
+  background-color: #333333;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=doc_style.css.map */

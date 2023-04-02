@@ -1,0 +1,31 @@
+{% extends doc_base %}
+
+{% block content %}
+    <div class="main-block" style="width: unset; max-width: unset;">
+        <form action="{{ url_for('load_classroom_to_db') }}" class="load_classroom" method="post">
+            <label class="classroom">
+                <input type="text" name="admission_year" placeholder="Год поступления в школу" required>
+                <input type="text" name="classroom_letter" placeholder="Буква" required>
+            </label>
+            <div class="classroom_confirm">
+                {% for student in students %}
+                    {% set student_num = loop.index|string %}
+                    <div class="student_confirm" id="{{ student_num }}">
+                        <span style="display: inline-block; width: 40px; text-align: end">{{ student_num }}.</span>
+                        <input class="cancel_student" type="button" value="✕" onclick="cancel_student({{ student_num }})">
+                        {% for key, val in student|items %}
+                            <label for="{{ key }}{{ student_num }}"></label>
+                            <input type="text" name="{{ student_num }}:{{ key }}" id="{{ key }}{{ student_num }}" value="{{ val }}">
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <input type="submit" value="Готово">
+        </form>
+    </div>
+    <script>
+        function cancel_student(student_id) {
+            document.getElementById(`${student_id}`).remove()
+        }
+    </script>
+{% endblock %}

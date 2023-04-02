@@ -1,9 +1,10 @@
 from docx import Document
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for
 from werkzeug.datastructures import FileStorage
 
 from app import app
 from app.database import Student, db
+from app.util.constants import class_letters
 from doc_generating.get_data import from_doc
 
 
@@ -34,15 +35,38 @@ def edit_student(student_id):
     )
 
 
-@app.route('/load_classroom', methods=['POST'])
+@app.route('/load_classroom', methods=["GET", "POST"])
 def load_classroom():
-    file = request.files["file"]
-    print(request.form)
-    file.stream.seekable = lambda: True
-    print(*from_doc(file.stream, "//фамилия// //имя// //отчество//"), sep="\n")
-    return "OK"
+    if request.form:
+        file = request.files["input"]
+        print(list(request.form.lists()))
+        file.stream.seekable = lambda: True
+        students = from_doc(file.stream, request.form["format"])
+        return render_template("database/load_classroom.html", students=students)
+    return redirect(url_for("database"))
 
 
 @app.route('/confirm_loading_classroom', methods=['GET', 'POST'])
-def confirm_loading_classroom():
-    pass
+def load_classroom_to_db():
+    students = {}
+    admission_year = int(request.form["admission_year"])
+    classroom_letter = class_letters.find(request.form["classroom_letter"].lower())
+
+    assert classroom_letter != -1, "not specified classroom_letter"
+
+    for key, val in request.form.items():
+        if ":" in key:
+            num, key = key.split(":")
+            num = int(num)
+            students[num] = students.get(num, {}) | {key: val}
+
+    students_res = []
+    for student in students.values():
+        st = Student(admission_year=admission_year, classroom_letter=classroom_letter)
+        for name, value in student.items():
+            st.__setattr__(name, value)
+        students_res.append(st)
+
+    db.session.add_all(students_res)
+    db.session.commit()
+    return redirect(url_for("database"))

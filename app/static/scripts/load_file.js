@@ -8,7 +8,7 @@ function load_file(link, name, body) {
         formData.append(name || "file", file);
         console.log(body)
 
-        for (let [k, v] of Object.entries(body || {})){
+        for (let [k, v] of Object.entries(body ? body() : {})){
             formData.append(k, v);
         }
         await fetch(

@@ -1,10 +1,12 @@
 flask~=2.2.2
+flask-login
 flask_sqlalchemy~=3.0.0
-flask_admin
+SQLAlchemy==2.0.7
+# flask_admin
+passlib
+
 docxtpl==0.16.6
 docx2pdf~=0.1.8
-passlib
-loguru~=0.6.0
 openpyxl==3.1.2
-SQLAlchemy==2.0.7
 python-docx~=0.8.11
+loguru~=0.6.0

@@ -3,7 +3,7 @@
     {% set today = now().date() %}
     {% set current_year = today.year - (today.month < year_start_month) %}
     <div class="main-block select_students">
-        <form method="post" action="{{ url_for('select_students') }}">
+        <form method="post" action="{{ url_for('select_students') }}" class="select_students_form" enctype="multipart/form-data">
             {% block options %}
                 <div class="option_panel ss_el">
                     <input onclick="send_students('docx')" class="container option_panel__btn" type="button" value="DOCX">
