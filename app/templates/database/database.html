@@ -17,10 +17,24 @@
             }
         )
     </script>
+    <div class="add-student hidden">
+        <div class="main-block">
+            <h4>Добавить ученика</h4>
+            {% for field, ru in editable_fields|items %}
+                <label>
+                    <input type="text" name="{{ field }}" placeholder="{{ ru|title }}">
+                </label><br>
+            {% endfor %}
+            <input type="button" class="submit" value="Отправить">
+            <input type="hidden" class="add-student-link" value="{{ url_for('add_student') }}">
+        </div>
+    </div>
+    <script src="{{ url_for('scripts', filename='add_student.js') }}"></script>
 {% endblock %}
 
 {% block options %}
-    <div class="option_panel ss_el" style="grid-template-columns: auto 150px">
+    <div class="option_panel ss_el" style="grid-template-columns: repeat(2, 1fr) 150px">
+        <input type="button" class="add-student-btn container option_panel__btn" value="Добавить студента">
         <input onclick="delete_students()" class="container option_panel__btn" type="button" value="Удалить выбранные">
         <input class="container option_panel__btn select_all" type="button" value="Выбрать всё">
     </div>

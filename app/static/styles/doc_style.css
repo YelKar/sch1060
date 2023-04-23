@@ -202,4 +202,34 @@ form.load_classroom .classroom > input {
   box-sizing: border-box;
 }
 
+div.add-student {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0009;
+}
+div.add-student.hidden {
+  display: none;
+}
+div.add-student .main-block {
+  width: min-content;
+}
+div.add-student .main-block h4 {
+  margin: 0 0 20px 0;
+}
+div.add-student .main-block input {
+  width: 400px;
+  box-sizing: border-box;
+}
+div.add-student .main-block .submit {
+  margin-top: 20px;
+}
+
 /*# sourceMappingURL=doc_style.css.map */

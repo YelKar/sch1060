@@ -199,3 +199,29 @@ form.load_classroom
       background-color: $container-color
       width: 100%
       box-sizing: border-box
+
+div.add-student
+  display: flex
+  &.hidden
+    display: none
+  position: fixed
+  justify-content: center
+
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  padding: 0
+
+  width: 100vw
+  height: 100vh
+  background-color: #0009
+  .main-block
+    h4
+      margin: 0 0 20px 0
+    width: min-content
+    input
+      width: 400px
+      box-sizing: border-box
+    .submit
+      margin-top: 20px

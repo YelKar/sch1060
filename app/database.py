@@ -30,12 +30,27 @@ class Student(db.Model):
         "lastname": "фамилия",
         "name": "имя",
         "patronymic": "отчество",
-        "grade": "класс",
+        # "grade": "класс",
+        "admission_year": "Год поступления в первый класс",
         "letter": "буква",
         "birthdate_str": "дата рождения"
     }
+    property_fields = [
+        "letter",
+        "birthdate",
+        "birthdate_str"
+    ]
 
     birthdate_format = "%d.%m.%Y"
+
+    def __init__(self, **kwargs):
+        for_set = {}
+        for field in self.property_fields:
+            if field in kwargs:
+                for_set[field] = kwargs.pop(field)
+        super().__init__(**kwargs)
+        for field, value in for_set.items():
+            self.__setattr__(field, value)
 
     @classmethod
     def grade_to_admission_year(cls, grade):
@@ -74,7 +89,11 @@ class Student(db.Model):
 
     @property
     def letter(self):
-        return chr(self.classroom_letter).upper()
+        return chr(self.classroom_letter)
+
+    @letter.setter
+    def letter(self, value: str):
+        self.classroom_letter = ord(value.upper())
 
     @property
     def age(self):
